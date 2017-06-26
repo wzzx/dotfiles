@@ -65,30 +65,34 @@ nnoremap <tab> :tabnext<CR>
 nnoremap <S-tab> :tabprevious<CR>
 nnoremap <C-c> :tabclose<CR>
 
-"Exposee xD (pancake  -> nopcode.org)
-fun Exposee()
-if (g:fs == 0)
-  res 1000
-  vertical res 1000
-  let g:fs=1
-else
-  exe "normal \="
-  let g:fs=0
-endif
-endfun
-map  :call Exposee()
+" Learn to properly use h, j, k, l:
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
+" Switch between relative and static line numbers
+" https://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set nu
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
 
 " Removes trailing spaces
-"function TrimWhiteSpace()
-": %s/\s*$//
-": ''
-":endfunction
+function TrimWhiteSpace()
+: %s/\s*$//
+: ''
+:endfunction
 
-"autocmd FileWritePre   * :call TrimWhiteSpace()
-"autocmd FileAppendPre  * :call TrimWhiteSpace()
-"autocmd FilterWritePre * :call TrimWhiteSpace()
-"autocmd BufWritePre    * :call TrimWhiteSpace()
+autocmd FileWritePre   * :call TrimWhiteSpace()
+autocmd FileAppendPre  * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre    * :call TrimWhiteSpace()
 
 map tt :TagbarToggle<cr>
 
