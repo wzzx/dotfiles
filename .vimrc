@@ -3,7 +3,7 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
-" allow vim to use modelines such as : #vim:syntax=python 
+" allow vim to use modelines such as : #vim:syntax=python
 set modeline
 set modelines=5
 
@@ -78,7 +78,7 @@ function! NumberToggle()
     set nornu
     set nu
   else
-    set relativenumber
+    set rnu
   endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
@@ -88,6 +88,7 @@ function TrimWhiteSpace()
 : %s/\s*$//
 : ''
 :endfunction
+nnoremap <C-s> :call TrimWhiteSpace()<cr>
 
 autocmd FileWritePre   * :call TrimWhiteSpace()
 autocmd FileAppendPre  * :call TrimWhiteSpace()
@@ -95,6 +96,11 @@ autocmd FilterWritePre * :call TrimWhiteSpace()
 autocmd BufWritePre    * :call TrimWhiteSpace()
 
 map tt :TagbarToggle<cr>
+
+" persistent undo - remember to create this dir
+set undodir=$HOME/.vim/undo
+set undolevels=5000
+set undofile
 
 " Ubuntu buggy logipat plugin
 let g:loaded_logipat = 1
