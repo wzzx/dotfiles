@@ -1,0 +1,54 @@
+urxvt*loginShell: true
+urxvt*font:    -*-fixed-medium-r-*-*-13-*-*-*-*-*-*
+urxvt*boldFont:    -*-fixed-medium-*-*-*-13-*-*-*-*-*-*
+urxvt*italicFont: -*-fixed-medium-*-*-*-13-*-*-*-*-*-*
+urxvt*boldItalicFont: -*-fixed-medium-*-*-*-13-*-*-*-*-*-*
+urxvt*colorIT: #707070
+urxvt*scrollBar: false
+#urxvt*scrollBar_left: false
+#urxvt*scrollBar_right: true
+urxvt*secondaryScroll: true
+urxvt*scrollTtyKeypress: true
+urxvt*scrollWithBuffer: true
+urxvt*scrollTtyOutput: false
+urxvt*saveLines: 8192
+urxvt*fading: 60
+urxvt*cursorColor: #ffffff
+urxvt*transparent: true
+urxvt*shading: 30
+
+Xcursor.theme: whiteglass
+Xcursor.size: 15
+
+*background: #151515
+*foreground: #ffffff
+
+! Black + DarkGrey
+URxvt*color0:                 #000000
+URxvt*color8:                 #757575
+! DarkRed + Red
+URxvt*color1:                 #C95B5B
+URxvt*color9:                 #E35A5A
+! DarkGreen + Green
+URxvt*color2:  #9ed3d7
+URxvt*color10: #339900
+!URxvt*color2:                 #65A160
+!URxvt*color10:                #7FE177
+! DarkYellow + Yellow
+URxvt*color3:                 #D5D370
+URxvt*color11:                #FFFEC2
+! DarkBlue + Blue
+ *color4:  #3f4f60
+ *color12: #0066cc
+
+!URxvt*color4:                 #5C85B0
+!URxvt*color12:                #4B9BF2
+! DarkMangenta + Mangenta
+URxvt*color5:                 #AA6EAF
+URxvt*color13:                #E1A2E5
+!DarkCyan + Cyan
+URxvt*color6:                 #409A9A
+URxvt*color14:                #4CD0D0
+! LightGrey + White
+URxvt*color7:                 #F0F0F0
+URxvt*color15:                #FDFDFD
