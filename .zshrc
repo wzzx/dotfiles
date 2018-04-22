@@ -15,11 +15,39 @@ setopt APPEND_HISTORY # sessions append the history list to the history file rat
 setopt CORRECT # command spelling correction
 setopt MENUCOMPLETE # on ambiguous completion insert the first match, if tab, remove and insert next
 
+setopt prompt_subst
+# prepare some tmux sweetness
+settitle() {
+    title="$(whoami)"
+    if [ $# -eq 1 ]; then
+        title=$1
+    fi
+	echo -ne "\033]2;$title\033\\" # this is pane name
+    #echo -ne "\033k$title\033\\" # this is window title / command 
+}
+
+tmuxprompt() {
+    if [ "$(whoami)" = "root" ]; then
+        tmux set -g status-left-bg red
+        tmux set -g status-left "[!!!] ROOT "
+    else
+        tmux source-file .tmux.conf
+    fi
+}
+
+function precmd() {
+    env | grep -q "TMUX_PANE"
+    if [[ $? -eq 0 ]]; then # a match is $? == 0
+    #    tmuxprompt
+        settitle
+    fi 
+}
+
 # env vars 
-export TERM=screen-256color 
 export EDITOR=vim
 export LC_MESSAGES="en_US.utf8"
 export PROMPT="$(print '[%!] %{\e[0;37m%}%n%{\e[0m%}@%{\e[0;38;5;26m%}%m%{\e[0m%}: %{\e[0;32m%}%~%{\e[0m%}') %B%#%b "
+
 
 # Aliases
 alias ll="ls -lFh"
@@ -68,3 +96,16 @@ alias -s pdf=pdfview
 
 bindkey -e # use emacs keybindings for shell
 bindkey "^R" history-incremental-pattern-search-backward
+
+ssh() {
+    # make sure we are inside TMUX
+    env | grep -q "TMUX_PANE"
+    if [[ $? -eq 0 ]]; then # a match is $? == 0
+		PANE_NAME="ssh/$(echo $* | cut -d ' ' -f 1 )"
+		settitle $PANE_NAME
+        command ssh "$@"
+    else
+        command ssh "$@"
+    fi
+}
+
