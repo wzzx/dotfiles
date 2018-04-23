@@ -23,7 +23,7 @@ settitle() {
         title=$1
     fi
 	echo -ne "\033]2;$title\033\\" # this is pane name
-    #echo -ne "\033k$title\033\\" # this is window title / command 
+    #echo -ne "\033k$title\033\\" # this is window title / command
 }
 
 tmuxprompt() {
@@ -40,14 +40,13 @@ function precmd() {
     if [[ $? -eq 0 ]]; then # a match is $? == 0
     #    tmuxprompt
         settitle
-    fi 
+    fi
 }
 
-# env vars 
+# env vars
 export EDITOR=vim
 export LC_MESSAGES="en_US.utf8"
 export PROMPT="$(print '[%!] %{\e[0;37m%}%n%{\e[0m%}@%{\e[0;38;5;26m%}%m%{\e[0m%}: %{\e[0;32m%}%~%{\e[0m%}') %B%#%b "
-
 
 # Aliases
 alias ll="ls -lFh"
@@ -55,6 +54,7 @@ alias ls="ls --color"
 alias hist='history -i -t "%F %T" 0'
 alias gp++="g++ -ansi -O2 -DNDEBUG -Wall -Wextra -Werror -Wno-uninitialized -Wno-sign-compare -Wshadow"
 alias my-puppet="sudo puppet agent --test --environment $USER"
+alias tssh=tmux_ssh
 
 # Python dev
 alias vactivate="source .venv/bin/activate"
@@ -67,7 +67,7 @@ else
     alias imgview=feh --scale
     alias pdfview=xpdf
 fi
-# source code 
+# source code
 #alias -s py=$EDITOR
 #alias -s go=$EDITOR
 alias -s c=$EDITOR
@@ -77,7 +77,7 @@ alias -s js=$EDITOR
 alias -s css=$EDITOR
 alias -s html=$EDITOR
 alias -s htm=$EDITOR
-# text 
+# text
 alias -s txt=$EDITOR
 alias -s md=$EDITOR
 
@@ -109,3 +109,6 @@ ssh() {
     fi
 }
 
+function tmux_ssh() {
+    eval $(tmux show-env -s |grep '^SSH_')
+}
